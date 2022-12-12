@@ -1,0 +1,18 @@
+toplam değerler --toplam_tuketim (udas_tuketim)
+
+gisudas > 
+
+tablolar
+
+-- hatlar 
+
+-- vana
+
+-- servis_kutusu
+
+-- yıllara göre  --> hatlar 
+
+-- mahalleye göre
+
+++toplam_tuketim
+mahalleye
