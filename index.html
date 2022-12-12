@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/vendor/favicon.png">
+    <link rel="apple-touch-icon" href="/vendor/favicon.png">
+    <title id="appTitle">Dashboard</title>
+    <!-- Bootstrap v5.2.3 -->
+    <link rel="stylesheet" href="/css/libs/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/libs/bootstrap.bundle.min.js"></script>
+    <!-- Styling -->
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/js/app.js" defer></script>
+    <script type="text/javascript" src="/js/login.js" defer></script>
+  </head>
+
+  <body class="login-body text-center">
+    <div class="background position-absolute w-100 h-100"></div>
+    <main class="login-card form-signin w-100 m-auto card">
+      <form>
+        <img class="logo mb-4 w-100 p-3" src="/vendor/logo.png" />
+        <h1 class="h3 mb-3 fw-normal text-white">Lütfen Giriş Yapın</h1>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" id="usernameInput" placeholder="adi.soyadi" />
+          <label for="usernameInput">Kullanıcı Adı</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="passwordInput" placeholder="Password" />
+          <label for="passwordInput">Şifre</label>
+        </div>
+
+
+        <button class="w-100 btn btn-lg btn-primary" type="button" id="loginButton">Giriş</button>
+        <p class="mt-5 mb-3 text-muted"><img src="/images/icons/netcad.png" class="netcad-icon"/>Netcad</p>
+      </form>
+    </main>
+  </body>
+</html>
