@@ -23,73 +23,244 @@
 
   <body class="bg-light">
     <div class="container">
-      <div class="row" id="firstRow">
+      <div class="row my-5" id="firstRow">
         <div class="col-2 text-center d-flex flex-column justify-content-center">
-          <span>Tüketim</span>
+          <h2>
+            <span class="badge text-bg-dark shadow">Tüketim</span>
+          </h2>
         </div>
-        <div class="col-md-1"><div class="vr h-100"></div></div>
+        <div class="col-md-1"><div class="vr h-100 d-none d-md-block"></div></div>
 
         <div class="col-9">
           <div class="row">
-            <div class="col-6">
-              <div class="card">
+            <div class="col-12 col-md-6">
+              <div class="card shadow mb-3 bg-body rounded">
                 <div class="card-body">
-                  <img src="/images/icons/fire.svg" class="icon float-end" />
-                  <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
-                  <h2 class="my-2" id="active-users-count">121</h2>
-                  <p class="mb-0 text-muted">
-                    <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span
-                    ><span class="text-nowrap text-secondary">Geçen aya kıyasla </span>
-                  </p>
+                  <div class="row">
+                    <div class="col-6">
+                      <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
+                      <h2 class="my-2" id="active-users-count">121</h2>
+                      <p class="mb-0 text-muted card-details">
+                        <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span>
+                        <span class="text-nowrap text-secondary">Geçen aya kıyasla </span>
+                      </p>
+                    </div>
+                    <div class="col-6">
+                      <img src="/images/icons/fire.svg" class="icon float-end text-dark" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- col end -->
-            <div class="col-6">
-              <div class="card">
+            <div class="col-12 col-md-6">
+              <div class="card shadow mb-3 bg-body rounded">
                 <div class="card-body">
-                  <canvas id="canvas" class="float-end"></canvas>
-                  <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
-                  <h2 class="my-2" id="active-users-count">121</h2>
-                  <p class="mb-0 text-muted">
-                    <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span
-                    ><span class="text-nowrap text-secondary">Geçen aya kıyasla </span>
-                  </p>
+                  <div class="row">
+                    <div class="col-6">
+                      <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
+                      <h2 class="my-2" id="active-users-count">121</h2>
+                      <div class="mb-0 text-muted card-details">
+                        <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span>
+                        <span class="text-nowrap text-secondary m-0">Geçen aya kıyasla</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="chart-wrapper">
+                        <canvas id="canvas" class=""></canvas>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- col end -->
           </div>
+          <!-- row end -->
         </div>
-        <!-- row end -->
         <div class="row">
           <div class="col"></div>
         </div>
       </div>
       <div class="row" id="secondRow">
-        <div class="col-2">Hatlar</div>
+        <div class="col-2 text-center d-flex flex-column justify-content-center">
+          <h2>
+            <span class="badge text-bg-dark">Hatlar</span>
+          </h2>
+        </div>
+        <div class="col-md-1"><div class="vr h-100 d-none d-md-block"></div></div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="card shadow mb-3 bg-body rounded">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <h6 class="text-uppercase mt-0 mb-3">Mahalle Tüketimleri</h6>
+                      <p class="my-2 d-flex align-items-center" id="active-users-count">
+                        <img src="/images/icons/gauge-high.svg" class="icon float-end icon__max mx-2" />CUMHURIYET
+                      </p>
+                      <p class="my-2 d-flex align-items-center" id="active-users-count">
+                        <img src="/images/icons/gauge-high.svg" class="icon float-end icon__min mx-2" />ELMALIDERE
+                      </p>
+                      <div class="mb-0 text-muted card-details dropdown">
+                        <span class="text-nowrap text-secondary m-0 btn dropdown-toggle" data-bs-toggle="dropdown">Tüketim alt limiti</span>
+                        <div class="dropdown-menu  text-center">
+                          <label for="customRange1" class="form-label" >Example range</label>
+                          <div class="d-flex m-3">
+                            <span class="mw-25">0</span><input type="range" class="form-range" id="customRange1" min="0" max="100" value="49"><span>100</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="chart-wrapper__large">
+                        <canvas id="canvas2" class=""></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- card end -->
       </div>
+      <!-- row end -->
     </div>
   </body>
   <style>
-    * {
-      /* border: 1px solid rgba(70, 247, 1, 0.322); */
-    }
     .icon {
-      height: 40px;
+      height: 3rem;
+    }
+
+    .chart-wrapper {
+      height: 6rem;
+      position: relative;
+    }
+
+    .chart-wrapper__large {
+      height: 10rem;
+    }
+
+    .card-details {
+      font-size: small;
+    }
+
+    .icon__max {
+      height: 1.5rem;
+      margin-right: 3px;
+      /* siyah ikonu filtre ile renklendirme - https://codepen.io/sosuke/pen/Pjoqqp */
+      filter: invert(36%) sepia(84%) saturate(720%) hue-rotate(110deg) brightness(89%) contrast(80%);
+    }
+    .icon__min {
+      height: 1.5rem;
+      margin-right: 3px;
+      transform: scaleX(-1); /* minimum ikonu olmadığı için max olanı ters çevirir */
+      -webkit-transform: scaleX(-1);
+      /* siyahtan sarıya */
+      filter: invert(85%) sepia(40%) saturate(3657%) hue-rotate(354deg) brightness(101%) contrast(101%);
     }
   </style>
   <script>
+
+  </script>
+  <script>
+    function generateColor() {
+      const hexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+      let code = "";
+      for (let i = 0; i < 6; i++) {
+        code += hexArray[Math.floor(Math.random() * 16)];
+      }
+      return `#${code}`;
+    }
+    const data2 = [
+      "OVADEMIRLER",
+      "KARAAĞAÇ",
+      "BOZKURT",
+      "KÖME",
+      "IŞIK",
+      "AYBEY",
+      "ELMALIDERE",
+      "MEHMET AKIF ERSOY",
+      "FEVZİ ÇAKMAK",
+      "SARAYALTI",
+      "ISLICE",
+      "DURAK",
+      "ATATÜRK",
+      "FATİH",
+      "CUMHURIYET",
+      "KURTULUŞ",
+      "ÜNALAN",
+      "KEMALÖZ",
+      "ÖZDEMİR",
+      "KARAKUYU",
+      "KURŞUNLUK",
+      "ISLAM",
+      "31 AGUSTOS",
+      "SEHITLER",
+      "CUMHURIYET",
+      "DILEK",
+      "Bozkus Köyü",
+      "Kizilhisar Köyü",
+      "KUYUCAK",
+      "YESIL KARAAGAÇ",
+      "HACIKADEM",
+      "CEVRE",
+      "IKISARAY",
+      "KALFA",
+      "MUHARREMSAH",
+      "DIKILITAS",
+    ];
+    var options2 = {
+      type: "doughnut",
+      data: {
+        labels: data2,
+        datasets: [
+          {
+            label: "# of Votes",
+            data: data2.map((i) => Math.trunc(Math.random() * 10)).sort(),
+            backgroundColor: data2.map((i) => generateColor()), // her data elemanı için random renk oluşturur
+          },
+        ],
+      },
+      options: {
+        cutout: "90%",
+        radius: "90%",
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        elements: {
+          arc: {
+            spacing: 5,
+            borderRadius: 15,
+          },
+        },
+      },
+    };
+
+    var ctx2 = document.getElementById("canvas2").getContext("2d");
+    new Chart(ctx2, options2);
+  </script>
+  <script>
     const colors = {
-      purple: {
-        default: "rgba(149, 76, 233, 1)",
-        half: "rgba(149, 76, 233, 0.5)",
-        quarter: "rgba(149, 76, 233, 0.25)",
+      primary: {
+        default: "rgba(13, 37, 61, 1)",
+        half: "rgba(13, 37, 61, 0.5)",
+        quarter: "rgba(13, 37, 61, 0.25)",
+        zero: "rgba(13, 37, 61, 0)",
+      },
+      secondary: {
+        default: "rgba(17,189,199, 1)",
+        half: "rgba(17,189,199, 0.5)",
+        quarter: "rgba(17,189,199, 0.25)",
         zero: "transparent",
       },
-      indigo: {
-        default: "rgba(80, 102, 120, 1)",
-        quarter: "rgba(80, 102, 120, 0.25)",
+      tertiary: {
+        default: "rgba(181,231,236, 1)",
+        quarter: "rgba(181,231,236, 0.25)",
       },
     };
 
@@ -97,22 +268,19 @@
     const dataBounds = chartMaxMin(weight);
     const labels = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10"];
 
-    const labels2 = ["", "", "", "", "", "", "", "", "", ""];
-
     const chart = document.getElementById("canvas");
     const ctx = chart.getContext("2d");
     ctx.canvas.height = 100;
-    // ctx.canvas.width = 100;
 
     gradient = ctx.createLinearGradient(
       0, // gradient starting point for x0
       0, // gradient starting point for y0
       0, // end of x
-      chart.height // en of y
+      80 // end of y
     );
-    gradient.addColorStop(0, colors.purple.half);
-    gradient.addColorStop(0.5, colors.purple.quarter);
-    gradient.addColorStop(1, colors.purple.zero);
+    gradient.addColorStop(0, colors.secondary.half);
+    gradient.addColorStop(0.7, colors.secondary.quarter);
+    gradient.addColorStop(1, colors.secondary.zero);
 
     const options = {
       type: "line",
@@ -122,24 +290,30 @@
           {
             fill: true,
             backgroundColor: gradient,
-            pointBackgroundColor: colors.purple.default,
-            borderColor: colors.purple.default,
+            pointBackgroundColor: colors.secondary.default,
+            pointBorderColor: "transparent",
+            pointBorderWidth: 5,
+            borderColor: colors.secondary.default,
             data: weight,
             tension: 0.4,
-            borderWidth: 2,
-            // pointRadius: 3,
+            borderWidth: 3,
+            pointRadius: 2,
           },
         ],
       },
       options: {
         layout: {
-          padding: 10,
+          padding: 5,
         },
         responsive: true,
-        plugins:{
+        maintainAspectRatio: false,
+        plugins: {
           legend: {
             display: false,
-          }
+          },
+          chartAreaBorder: {
+            display: false,
+          },
         },
         scales: {
           x: {
@@ -147,19 +321,31 @@
               display: false,
             },
             ticks: {
-              display: false,}
+              display: false,
+            },
+            border: {
+              display: false,
+            },
           },
           y: {
             grid: {
-              display: true,
-              color: colors.indigo.quarter,
+              display: false,
             },
             ticks: {
               display: false,
             },
             max: dataBounds.upper,
             min: dataBounds.lower,
+            border: {
+              display: false,
+            },
           },
+        },
+        tooltip: {
+          label: "eren",
+          labelColor: (e) => ({
+            backgroundColor: e.dataset.backgroundColor,
+          }),
         },
       },
     };
