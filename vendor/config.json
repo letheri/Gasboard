@@ -1,7 +1,59 @@
 {
-    "appName": "UDAŞ Dashboard",
-    "kurumAdi":"UDAŞ",
-    "netigma":"BELNET",
-    "domain":"http://netigmademo.netcad.com.tr/"
-    
+  "appName": "UDAŞ Dashboard",
+  "kurumAdi": "UDAŞ",
+  "netigma": "GASNET",
+  "domain": "http://194.15.100.166/",
+  "dashboard": {
+      "Genel": {
+        "Yatırım Raporu": {
+          "type": "query",
+          "chart": "table",
+          "queryName": "dashboard_mahalle_genel_istatistik.Sorgusu"
+        }
+      },
+    "Tüketim": {
+      "Toplam Tüketim": {
+        "type": "query",
+        "chart": "sum",
+        "queryName": "dashboard_aylik_tuketim.Sorgusu",
+        "unit": "Sm³",
+        "compare": true,
+        "icon": "images/icons/fire.svg"
+      },
+      "Toplam Bina Sayısı": {
+        "type": "template",
+        "chart": "sum",
+        "queryName": "dashboard_kullanim_tipi_sayi_tuketim.yapi_sayi",
+        "unit": "Adet",
+        "compare": false,
+        "icon": "images/icons/building.svg"
+      },
+      "Mahalle Tüketimleri": {
+        "type": "query",
+        "chart": "donut",
+        "queryName": "dashboard_mahalle_tuketim.Sorgusu",
+        "order": "order-3",
+        "category": "Mahalle"
+      },
+      "Türlere Bağlı Tüketim": {
+        "type": "query",
+        "chart": "donut",
+        "queryName": "dashboard_kullanim_tipi_sayi_tuketim.Sorgusu",
+        "order": "order-4",
+        "category": "Tür"
+      }
+    },
+    "Hatlar": {
+      "Yapım Yılına Göre Hatlar": {
+        "type": "query",
+        "chart": "line",
+        "queryName": "dashboard_hatlar_yillik.Sorgusu"
+      },
+      "Yapım Yılına Göre Servis Hatları": {
+        "type": "query",
+        "chart": "line",
+        "queryName": "dashboard_servis_hatlari_yillik.Sorgusu"
+      }
+    }
+  }
 }

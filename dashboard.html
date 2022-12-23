@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/vendor/favicon.png" />
-    <link rel="apple-touch-icon" href="/vendor/favicon.png" />
+    <link rel="icon" href="vendor/favicon.png" />
+    <link rel="apple-touch-icon" href="vendor/favicon.png" />
     <title id="appTitle">Dashboard</title>
     <!-- Bootstrap v5.2.3 -->
     <link rel="stylesheet" href="/css/libs/bootstrap.min.css" />
@@ -16,351 +16,90 @@
     <!-- Styling -->
     <!-- <link rel="stylesheet" href="/css/app.css" />
     <link rel="stylesheet" href="/css/login.css" /> -->
+    <link rel="stylesheet" href="css/dashboard.css" />
     <!-- JavaScript -->
-    <!-- <script type="text/javascript" src="/js/app.js" defer></script>
-    <script type="text/javascript" src="/js/login.js" defer></script> -->
+    <script type="text/javascript" src="js/app.js" defer></script>
+    <script type="text/javascript" src="js/login.js" defer></script>
+    <script type="text/javascript" src="js/gisapi.js" defer></script>
+    <script type="text/javascript" src="js/dashboard.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script src="js/libs/gridJS.locale.js"></script>
+    <!-- <script type="text/javascript" src="/js/test.js" defer></script> -->
   </head>
+  <header>
+    <div class="px-3 py-2 text-bg-dark">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <img class="header__logo w-100 p-3" src="vendor/logo.png" />
+          </a>
 
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="../BELNET" class="nav-link text-white text-center">
+                <!-- <svg class="bi bi-home d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg> -->
+                <!-- <a class="bi bi-home"></a> -->
+                <img src="images/icons/table.svg" class="header__icon" />
+                <p class="m-0">GASNET</p>
+              </a>
+            </li>
+            <li>
+              <a href="../NETGAS" class="nav-link text-white text-center">
+                <img src="images/icons/map.svg" class="header__icon" />
+                <p class="m-0">NETGAS</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
   <body class="bg-light">
-    <div class="container">
-      <div class="row my-5" id="firstRow">
-        <div class="col-2 text-center d-flex flex-column justify-content-center">
-          <h2>
-            <span class="badge text-bg-dark shadow">Tüketim</span>
-          </h2>
+    <div class="container-fluid px-5 my-2">
+      <div class="my-1">
+        <div class="btn text-dark px-3 rounded-pill switch switch__selected">
+          <img class="fa-solid fa-bars switch__icon" src="images/icons/bars.svg" />
+          <span>Özet</span>
         </div>
-        <div class="col-md-1"><div class="vr h-100 d-none d-md-block"></div></div>
-
-        <div class="col-9">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="card shadow mb-3 bg-body rounded">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-6">
-                      <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
-                      <h2 class="my-2" id="active-users-count">121</h2>
-                      <p class="mb-0 text-muted card-details">
-                        <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span>
-                        <span class="text-nowrap text-secondary">Geçen aya kıyasla </span>
-                      </p>
-                    </div>
-                    <div class="col-6">
-                      <img src="/images/icons/fire.svg" class="icon float-end text-dark" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col end -->
-            <div class="col-12 col-md-6">
-              <div class="card shadow mb-3 bg-body rounded">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-6">
-                      <h6 class="text-uppercase mt-0">Toplam Tüketim</h6>
-                      <h2 class="my-2" id="active-users-count">121</h2>
-                      <div class="mb-0 text-muted card-details">
-                        <span class="text-success me-2"><span class="bi bi-caret-up-fill text-success"></span> 5.27%</span>
-                        <span class="text-nowrap text-secondary m-0">Geçen aya kıyasla</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="chart-wrapper">
-                        <canvas id="canvas" class=""></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- col end -->
-          </div>
-          <!-- row end -->
-        </div>
-        <div class="row">
-          <div class="col"></div>
+        <div class="btn text-dark px-3 rounded-pill switch">
+          <img class="fa-solid fa-square-poll-vertical switch__icon" src="images/icons/square-poll-vertical.svg" />
+          <span>Detaylı</span>
         </div>
       </div>
-      <div class="row" id="secondRow">
-        <div class="col-2 text-center d-flex flex-column justify-content-center">
-          <h2>
-            <span class="badge text-bg-dark">Hatlar</span>
-          </h2>
-        </div>
-        <div class="col-md-1"><div class="vr h-100 d-none d-md-block"></div></div>
-        <div class="col-9">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="card shadow mb-3 bg-body rounded">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-6">
-                      <h6 class="text-uppercase mt-0 mb-3">Mahalle Tüketimleri</h6>
-                      <p class="my-2 d-flex align-items-center" id="active-users-count">
-                        <img src="/images/icons/gauge-high.svg" class="icon float-end icon__max mx-2" />CUMHURIYET
-                      </p>
-                      <p class="my-2 d-flex align-items-center" id="active-users-count">
-                        <img src="/images/icons/gauge-high.svg" class="icon float-end icon__min mx-2" />ELMALIDERE
-                      </p>
-                      <div class="mb-0 text-muted card-details dropdown">
-                        <span class="text-nowrap text-secondary m-0 btn dropdown-toggle" data-bs-toggle="dropdown">Tüketim alt limiti</span>
-                        <div class="dropdown-menu  text-center">
-                          <label for="customRange1" class="form-label" >Example range</label>
-                          <div class="d-flex m-3">
-                            <span class="mw-25">0</span><input type="range" class="form-range" id="customRange1" min="0" max="100" value="49"><span>100</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="chart-wrapper__large">
-                        <canvas id="canvas2" class=""></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <hr />
+    </div>
+    <div class="container-fluid px-5" id="category_container">
+      <!-- Kategori ve kartlar otomatik olarak dashboard.js dosyasından oluşturulur -->
+      
+    </div>
+    <div class="modal" tabindex="-1" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detay</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal_body">
+            
           </div>
         </div>
-        <!-- card end -->
       </div>
-      <!-- row end -->
     </div>
   </body>
-  <style>
-    .icon {
-      height: 3rem;
-    }
-
-    .chart-wrapper {
-      height: 6rem;
-      position: relative;
-    }
-
-    .chart-wrapper__large {
-      height: 10rem;
-    }
-
-    .card-details {
-      font-size: small;
-    }
-
-    .icon__max {
-      height: 1.5rem;
-      margin-right: 3px;
-      /* siyah ikonu filtre ile renklendirme - https://codepen.io/sosuke/pen/Pjoqqp */
-      filter: invert(36%) sepia(84%) saturate(720%) hue-rotate(110deg) brightness(89%) contrast(80%);
-    }
-    .icon__min {
-      height: 1.5rem;
-      margin-right: 3px;
-      transform: scaleX(-1); /* minimum ikonu olmadığı için max olanı ters çevirir */
-      -webkit-transform: scaleX(-1);
-      /* siyahtan sarıya */
-      filter: invert(85%) sepia(40%) saturate(3657%) hue-rotate(354deg) brightness(101%) contrast(101%);
-    }
-  </style>
+  <footer class="">
+    <p class="mt-5 mb-3 text-center text-muted"><img src="images/icons/netcad.png" class="netcad-icon" />Netcad</p>
+  </footer>
   <script>
-
-  </script>
-  <script>
-    function generateColor() {
-      const hexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
-      let code = "";
-      for (let i = 0; i < 6; i++) {
-        code += hexArray[Math.floor(Math.random() * 16)];
+    function ready(fn) {
+      if (document.readyState !== "loading") {
+        init();
+      } else {
+        document.addEventListener("DOMContentLoaded", init());
       }
-      return `#${code}`;
     }
-    const data2 = [
-      "OVADEMIRLER",
-      "KARAAĞAÇ",
-      "BOZKURT",
-      "KÖME",
-      "IŞIK",
-      "AYBEY",
-      "ELMALIDERE",
-      "MEHMET AKIF ERSOY",
-      "FEVZİ ÇAKMAK",
-      "SARAYALTI",
-      "ISLICE",
-      "DURAK",
-      "ATATÜRK",
-      "FATİH",
-      "CUMHURIYET",
-      "KURTULUŞ",
-      "ÜNALAN",
-      "KEMALÖZ",
-      "ÖZDEMİR",
-      "KARAKUYU",
-      "KURŞUNLUK",
-      "ISLAM",
-      "31 AGUSTOS",
-      "SEHITLER",
-      "CUMHURIYET",
-      "DILEK",
-      "Bozkus Köyü",
-      "Kizilhisar Köyü",
-      "KUYUCAK",
-      "YESIL KARAAGAÇ",
-      "HACIKADEM",
-      "CEVRE",
-      "IKISARAY",
-      "KALFA",
-      "MUHARREMSAH",
-      "DIKILITAS",
-    ];
-    var options2 = {
-      type: "doughnut",
-      data: {
-        labels: data2,
-        datasets: [
-          {
-            label: "# of Votes",
-            data: data2.map((i) => Math.trunc(Math.random() * 10)).sort(),
-            backgroundColor: data2.map((i) => generateColor()), // her data elemanı için random renk oluşturur
-          },
-        ],
-      },
-      options: {
-        cutout: "90%",
-        radius: "90%",
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        elements: {
-          arc: {
-            spacing: 5,
-            borderRadius: 15,
-          },
-        },
-      },
-    };
-
-    var ctx2 = document.getElementById("canvas2").getContext("2d");
-    new Chart(ctx2, options2);
-  </script>
-  <script>
-    const colors = {
-      primary: {
-        default: "rgba(13, 37, 61, 1)",
-        half: "rgba(13, 37, 61, 0.5)",
-        quarter: "rgba(13, 37, 61, 0.25)",
-        zero: "rgba(13, 37, 61, 0)",
-      },
-      secondary: {
-        default: "rgba(17,189,199, 1)",
-        half: "rgba(17,189,199, 0.5)",
-        quarter: "rgba(17,189,199, 0.25)",
-        zero: "transparent",
-      },
-      tertiary: {
-        default: "rgba(181,231,236, 1)",
-        quarter: "rgba(181,231,236, 0.25)",
-      },
-    };
-
-    const weight = [60.0, 60.2, 59.1, 61.4, 59.9, 60.2, 59.8, 58.6, 59.6, 59.2];
-    const dataBounds = chartMaxMin(weight);
-    const labels = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10"];
-
-    const chart = document.getElementById("canvas");
-    const ctx = chart.getContext("2d");
-    ctx.canvas.height = 100;
-
-    gradient = ctx.createLinearGradient(
-      0, // gradient starting point for x0
-      0, // gradient starting point for y0
-      0, // end of x
-      80 // end of y
-    );
-    gradient.addColorStop(0, colors.secondary.half);
-    gradient.addColorStop(0.7, colors.secondary.quarter);
-    gradient.addColorStop(1, colors.secondary.zero);
-
-    const options = {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            fill: true,
-            backgroundColor: gradient,
-            pointBackgroundColor: colors.secondary.default,
-            pointBorderColor: "transparent",
-            pointBorderWidth: 5,
-            borderColor: colors.secondary.default,
-            data: weight,
-            tension: 0.4,
-            borderWidth: 3,
-            pointRadius: 2,
-          },
-        ],
-      },
-      options: {
-        layout: {
-          padding: 5,
-        },
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          chartAreaBorder: {
-            display: false,
-          },
-        },
-        scales: {
-          x: {
-            grid: {
-              display: false,
-            },
-            ticks: {
-              display: false,
-            },
-            border: {
-              display: false,
-            },
-          },
-          y: {
-            grid: {
-              display: false,
-            },
-            ticks: {
-              display: false,
-            },
-            max: dataBounds.upper,
-            min: dataBounds.lower,
-            border: {
-              display: false,
-            },
-          },
-        },
-        tooltip: {
-          label: "eren",
-          labelColor: (e) => ({
-            backgroundColor: e.dataset.backgroundColor,
-          }),
-        },
-      },
-    };
-
-    window.onload = function () {
-      window.myLine = new Chart(ctx, options);
-    };
-
-    function chartMaxMin(chartDataArray) {
-      const maxVal = Math.max(...chartDataArray);
-      const minVal = Math.min(...chartDataArray);
-      const delta = maxVal - minVal;
-      const upperBound = Math.trunc(delta / 10 + maxVal) + 1;
-      const lowerBound = Math.trunc(minVal - delta / 10);
-      return { lower: lowerBound, upper: upperBound };
+    function init() {
+      // const dashboard = new App();
     }
   </script>
 </html>

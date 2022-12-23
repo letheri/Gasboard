@@ -1,0 +1,91 @@
+:root{
+  --donut-height:10rem;
+  --line-height: 6rem;
+}
+
+.icon {
+  height: 3rem;
+}
+
+.sum_icon {
+  height: 9rem;
+  position: absolute;
+  opacity: 0.4;
+}
+
+.chart-wrapper {
+  height: var(--line-height);
+  position: relative;
+}
+
+.chart-wrapper__large {
+  height: var(--donut-height);
+}
+
+.chart-wrapper__large canvas{
+  margin: 0 auto;
+  height: var(--donut-height);
+}
+
+.card-details {
+  font-size: small;
+}
+
+.icon__max {
+  height: 1.5rem;
+  margin-right: 3px;
+  /* siyah ikonu filtre ile renklendirme - https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(36%) sepia(84%) saturate(720%) hue-rotate(110deg) brightness(89%) contrast(80%);
+}
+.icon__min {
+  height: 1.5rem;
+  margin-right: 3px;
+  transform: scaleX(-1); /* minimum ikonu olmadığı için max olanı ters çevirir */
+  -webkit-transform: scaleX(-1);
+  /* siyahtan sarıya */
+  filter: invert(85%) sepia(40%) saturate(3657%) hue-rotate(354deg) brightness(101%) contrast(101%);
+}
+
+
+.header__logo{
+    height: 70px;
+}
+
+.header__icon{
+    height: 20px;
+    filter: invert(88%) sepia(5%) saturate(0%) hue-rotate(1deg) brightness(98%) contrast(86%);
+}
+
+.switch__icon{
+  height: 1.4rem;
+  filter: invert(11%) sepia(7%) saturate(945%) hue-rotate(169deg) brightness(100%) contrast(93%);
+}
+
+.switch__selected {
+  background-color: lightgrey;
+}
+
+.netcad-icon{
+    width: 20px;
+    margin-right: 0.3em;
+}
+
+
+
+table, .card-footer {
+  font-size: 0.8rem;
+}
+
+table.gridjs-table{
+  width: 100%;
+}
+
+.donut-settings{
+  width: 30vw;
+}
+
+@media (max-width: 767px) {
+  .donut-settings{
+    width: 70vw;
+  }
+}

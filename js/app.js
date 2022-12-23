@@ -1,14 +1,14 @@
 // Erencan Taşbaş
 // 2022-12-07
 // v0.1
-let dashboard; // Uygulama bu class üzerinden dönmektedir.
+let APP; // Uygulama bu class üzerinden dönmektedir.
 
 // Config dosyası okunarak ilk adım atılıyor.
 fetch("../vendor/config.json")
   .then((response) => response.json())
   .then((json) => {
-    dashboard = new App(json);
-    dashboard.init();
+    APP = new App(json);
+    APP.init();
   });
 
 class App {
@@ -37,8 +37,10 @@ class App {
   init(){
     this.parse_config(this.appConfig);
     this.set_html_document();
-    this.login = new Login();
-    
+    // this.login = new Login();
+    this.login = new Authentication();
+    this.dashboard = new Dashboard();
+    // this.login.set_session(this)
   }
 }
 

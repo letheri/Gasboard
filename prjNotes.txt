@@ -16,3 +16,8 @@ tablolar
 
 ++toplam_tuketim
 mahalleye
+
+
+
+////// 
+udas_tuketim tablosuna -1 bina kodlu test verisi aktarıldı
