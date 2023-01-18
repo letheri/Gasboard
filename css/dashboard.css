@@ -89,3 +89,13 @@ table.gridjs-table{
     width: 70vw;
   }
 }
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  .chart-wrapper{
+	  width:75%
+  }
+  
+}
