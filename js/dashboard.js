@@ -210,7 +210,7 @@ class Donut {
         </div>
     `;
     } else {
-      document.documentElement.style.setProperty("--donut-height", "27rem");
+      document.documentElement.style.setProperty("--donut-height", "50rem");
       this.cutoff = this.data.rows.length;
       this.element.innerHTML = `
       <div class="card shadow mb-3 mt-1 bg-body rounded">
