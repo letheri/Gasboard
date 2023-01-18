@@ -47,12 +47,20 @@
       "Yapım Yılına Göre Hatlar": {
         "type": "query",
         "chart": "line",
-        "queryName": "dashboard_hatlar_yillik.Sorgusu"
+        "queryName": "dashboard_hatlar_yillik.Sorgusu",
+        "unit": ""
+      },
+      "Yapım Yılına Göre Hat Uzunlukları": {
+        "type": "query",
+        "chart": "line",
+        "queryName": "dashboard_hatlar_yillik.Uzunluk",
+        "unit": "m"
       },
       "Yapım Yılına Göre Servis Hatları": {
         "type": "query",
         "chart": "line",
-        "queryName": "dashboard_servis_hatlari_yillik.Sorgusu"
+        "queryName": "dashboard_servis_hatlari_yillik.Sorgusu",
+        "unit": ""
       }
     }
   }

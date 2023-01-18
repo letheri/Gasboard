@@ -49,7 +49,7 @@ class Dashboard {
         const config = this.config[i][chart];
         switch (config.chart) {
           case "sum":
-            this[config.queryName] = new Sum(chart, cardContainerRow, config.queryName, config.type,config.compare, config.unit, config.icon);
+            this[config.queryName] = new Sum(chart, cardContainerRow, config.queryName, config.type, config.compare, config.unit, config.icon);
             break;
           case "donut":
             this[config.queryName] = new Donut(chart, cardContainerRow, config.queryName, this.compactGraph, config.order, config.category);
@@ -58,7 +58,7 @@ class Dashboard {
             this[config.queryName] = new Table(chart, cardContainerRow, config.queryName);
             break;
           case "line":
-            this[config.queryName] = new Line(chart, cardContainerRow, config.queryName, this.compactGraph);
+            this[config.queryName] = new Line(chart, cardContainerRow, config.queryName, this.compactGraph, config.unit || '');
             break;
         }
       }
@@ -91,9 +91,9 @@ class Sum {
   constructor(title, element, netigmaQuery, queryType, compare, unit, icon) {
     this.title = title;
     this.element = element;
-    this.canBeCompared = compare
-    this.unit = unit
-    this.icon = icon
+    this.canBeCompared = compare;
+    this.unit = unit;
+    this.icon = icon;
     this.request = new Gisapi(queryType, netigmaQuery);
     this.request.query(this.generateSum.bind(this));
   }
@@ -107,28 +107,27 @@ class Sum {
           const _tarih = new Date(dataRow[dateIndex]);
           dataRow[dateIndex] = `${_tarih.getDate()}.${_tarih.getMonth() + 1}.${_tarih.getFullYear()}`; // date parsed
         }
-      }
-      else if (col === 'Int64'){
+      } else if (col === "Int64") {
         this.lastCount = _data.rows[0][0];
       }
     }
-    if (this.canBeCompared){
-        const lastData = _data.rows[0];
-        const previousData = _data.rows[1];
-        const indexOfCountColumn = _data.columnTypes.indexOf(_data.columnTypes.filter((i) => i !== "Date")[0]);
-        this.lastCount = lastData[indexOfCountColumn];
-        const previousCount = previousData[indexOfCountColumn];
-        this.comparePart = `                
+    if (this.canBeCompared) {
+      const lastData = _data.rows[0];
+      const previousData = _data.rows[1];
+      const indexOfCountColumn = _data.columnTypes.indexOf(_data.columnTypes.filter((i) => i !== "Date")[0]);
+      this.lastCount = lastData[indexOfCountColumn];
+      const previousCount = previousData[indexOfCountColumn];
+      this.comparePart = `                
         <p class="mb-0 text-muted card-details">
             <span class="text-${this.lastCount - previousCount > 0 ? "success" : "warning"} me-2">
             <span class="bi bi-caret-${this.lastCount - previousCount > 0 ? "up" : "down"}-fill"></span> 
                 ${(((this.lastCount - previousCount) * 100) / previousCount).toFixed(2)}%
             </span>
         <span class="text-nowrap text-secondary">Geçen aya kıyasla </span>
-        </p>`
+        </p>`;
     }
-    const sumElement = document.createElement('div');
-    sumElement.classList.add("col-12", "col-md-6")
+    const sumElement = document.createElement("div");
+    sumElement.classList.add("col-12", "col-md-6");
     sumElement.innerHTML = `
         <div class="card shadow mb-3 mt-1 bg-body rounded overflow-hidden">
         <div class="card-body">
@@ -136,7 +135,7 @@ class Sum {
             <div class="col-8">
                 <h6 class="text-uppercase mt-0">${this.title}</h6>
                 <h3 class="my-2" id="active-users-count">${this.lastCount} ${this.unit}</h3>
-                ${this.canBeCompared ? this.comparePart : ''}
+                ${this.canBeCompared ? this.comparePart : ""}
             </div>
             <div class="col-4">
                 <img src="${this.icon}" class="sum_icon float-end text-dark" />
@@ -145,7 +144,7 @@ class Sum {
         </div>
         </div>
     `;
-    
+
     this.element.appendChild(sumElement);
   }
 }
@@ -185,10 +184,10 @@ class Donut {
                     <div class="col-6">
                         <h6 class="text-uppercase mt-0 mb-3">${this.title}</h6>
                         <p class="my-2 d-flex align-items-center" id="active-users-count">
-                            <img src="/images/icons/gauge-high.svg" class="icon float-end icon__max mx-2" />${largestValue}
+                            <img src="images/icons/gauge-high.svg" class="icon float-end icon__max mx-2" />${largestValue}
                         </p>
                         <p class="my-2 d-flex align-items-center" id="active-users-count">
-                            <img src="/images/icons/gauge-high.svg" class="icon float-end icon__min mx-2" />${smallestValue}
+                            <img src="images/icons/gauge-high.svg" class="icon float-end icon__min mx-2" />${smallestValue}
                         </p>
                         <div class="mb-0 text-muted card-details dropdown donut-settings">
                             <span class="text-nowrap text-secondary m-0 btn dropdown-toggle" data-bs-toggle="dropdown">${this.category} Sayısı Limiti</span>
@@ -248,14 +247,11 @@ class Donut {
     this.filter_data(this.cutoff);
     this.cutoffSlider = this.element.querySelector("input");
     this.cutoffSlider.addEventListener("change", () => {
-    console.log(this)
-
       this.filter_data(this.cutoffSlider.value);
       this.cutoff = this.cutoffSlider.value;
       this.generate_chart();
     });
     this.generate_chart();
-
   }
 
   filter_data(cutoff) {
@@ -287,7 +283,7 @@ class Donut {
         plugins: {
           legend: {
             display: this.compactGraph ? false : true,
-            position: 'left',
+            position: "left",
           },
         },
         elements: {
@@ -360,10 +356,11 @@ class Table {
 }
 
 class Line {
-  constructor(title, element, netigmaQuery, compactGraph) {
+  constructor(title, element, netigmaQuery, compactGraph, unit) {
     this.title = title;
     this.lineCard = element;
     this.compactGraph = compactGraph;
+    this.unit = unit;
     const request = new Gisapi("query", netigmaQuery);
     request.query(this.generateElement.bind(this));
   }
@@ -387,7 +384,7 @@ class Line {
     const lastDate = lastData[this.dateColumnIndex];
     const previousCount = previousData[this.countColumnIndex];
     const element = document.createElement("div");
-    this.compactGraph ? element.classList.add("col-12", "col-md-6") : element.classList.add("col-12") 
+    this.compactGraph ? element.classList.add("col-12", "col-md-6") : element.classList.add("col-12");
     if (this.compactGraph) {
       document.documentElement.style.setProperty("--line-height", "6rem");
       element.innerHTML = `
@@ -397,7 +394,7 @@ class Line {
                     <div class="col-6">
                         <h6 class="text-uppercase mt-0">${this.title}</h6>
                         <h2 class="my-2" id="active-users-count">
-                            ${lastCount} 
+                            ${lastCount} ${this.unit}
                             <span class="fs-4 text-muted">(${lastDate})</span>
                         </h2>
                         <div class="mb-0 text-muted card-details">
@@ -474,7 +471,7 @@ class Line {
     gradient.addColorStop(1, this.#colors.secondary.zero);
 
     const options = {
-      type: this.compactGraph? "line":"bar",
+      type: this.compactGraph ? "line" : "bar",
       data: {
         labels: labels,
         datasets: [
@@ -503,27 +500,27 @@ class Line {
             display: false,
           },
           chartAreaBorder: {
-            display: this.compactGraph? false:true,
+            display: this.compactGraph ? false : true,
           },
         },
         scales: {
           x: {
             grid: {
-              display: this.compactGraph? false:true,
+              display: this.compactGraph ? false : true,
             },
             ticks: {
-              display: this.compactGraph? false:true,
+              display: this.compactGraph ? false : true,
             },
             border: {
-              display: this.compactGraph? false:true,
+              display: this.compactGraph ? false : true,
             },
           },
           y: {
             grid: {
-              display: this.compactGraph? false:true,
+              display: this.compactGraph ? false : true,
             },
             ticks: {
-              display: this.compactGraph? false:true,
+              display: this.compactGraph ? false : true,
             },
             max: dataBounds.upper,
             min: dataBounds.lower < 0 ? 0 : dataBounds.lower,
