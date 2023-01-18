@@ -4,23 +4,20 @@ class User {
   constructor() {
     this.isLogined = false;
   }
-  setParameters(json){
+  setParameters(json) {
     this.username = json.username;
     this.password = json.password;
     this.isLogined = true;
   }
 }
 
-class Authentication{
+class Authentication {
   constructor() {
     this.user = new User();
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     this.sessionid = urlParams.get("sessionid");
-    if (this.sessionid) {
-      urlParams.delete("sessionid");
-      // this.isLogined(this.sessionid);
-    }
+    this.isLogined(this.sessionid);
   }
   login(username, password) {
     const params = new URLSearchParams(`userName=${username}&password=${password}`);
@@ -33,7 +30,7 @@ class Authentication{
     })
       .then((response) => response.json())
       .then((json) => {
-        this.user.setParameters(json)
+        this.user.setParameters(json);
       });
   }
 
@@ -41,33 +38,38 @@ class Authentication{
     fetch(`${APP.netigma}/gisapi/authentication/IsLogined?sessionid=` + this.sessionid)
       .then((response) => response.json())
       .then((json) => {
-        this.user.isLogined = json
-        // set_session()
+        this.user.isLogined = json;
+        if (this.user.isLogined) {
+          this.refresh(this.sessionid);
+        } else {
+          console.log(this);
+          alert("Kullanıcı girişi zaman aşımına uğradı, tekrar giriş yapınız.");
+          window.location.href = APP.domain + "NETGAS/LOGIN/";
+        }
       });
   }
 
   refresh() {
     fetch(`${APP.netigma}/gisapi/authentication/refresh?sessionid=` + this.sessionid)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log('SessionID refreshed',json);
-    });
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("SessionID refreshed", json);
+      });
   }
 
   logout() {
     fetch(`${APP.netigma}/gisapi/authentication/logout?sessionid=` + this.sessionid)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log('User logged out',json);
-    });
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("User logged out", json);
+      });
   }
-
 }
 
 class Login extends Authentication {
   constructor() {
     super();
-    
+
     // this.userNameInputElement = document.getElementById("usernameInput");
     // this.passwordInputElement = document.getElementById("passwordInput");
     // this.loginButtonElement = document.getElementById("loginButton");
