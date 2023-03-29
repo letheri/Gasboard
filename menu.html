@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+  </head>
+  <body>
+    <main id="main">
+      <h1>DOĞUGAZ Gasboard</h1>
+      <div class="row">
+          <div class="province-card col">
+            <img
+              src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80"
+              alt="A City skyline at sunset"
+            />
+            <div class="text">
+              <h2 data-splitting="">Bitlis</h2>
+            </div>
+          </div>
+          <div class="province-card col">
+            <img
+              src="https://images.unsplash.com/photo-1586500036706-41963de24d8b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80"
+              alt="A City skyline at sunset"
+            />
+            <div class="text">
+              <h2 data-splitting="">Batman</h2>
+            </div>
+          </div>
+          <div class="province-card col">
+            <img
+              src="https://images.unsplash.com/photo-1586500036706-41963de24d8b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=687&amp;q=80"
+              alt="A City skyline at sunset"
+            />
+            <div class="text">
+              <h2 data-splitting="">Muş</h2>
+            </div>
+          </div>
+      </div>
+    </main>
+  </body>
+  <style>
+    :root {
+      --cover-timing: 0.5s;
+      --cover-ease: cubic-bezier(0.66, 0.08, 0.19, 0.97);
+      --cover-stagger: 0.15s;
+      --text-timing: 0.75s;
+      --text-stagger: 0.015s;
+      --text-ease: cubic-bezier(0.38, 0.26, 0.05, 1.07);
+      --title-stagger: 0.05s;
+      --highlight: white;
+    }
+
+    .province-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 9/12;
+      display: flex;
+      flex-direction: column;
+      border-radius: 7px;
+      box-shadow: rgba(255, 255, 255, 0.3) 0 5vw 6vw -8vw,
+        rgba(255, 255, 255, 0) 0 4.5vw 5vw -6vw,
+        rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw,
+        rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+      transition: box-shadow 1s var(--cover-ease);
+    }
+    .province-card > * {
+      z-index: 2;
+    }
+    .province-card > img {
+      z-index: 0;
+      transition: all 0.8s cubic-bezier(0.66, 0.08, 0.19, 0.97);
+    }
+    .province-card::before,
+    .province-card::after {
+      content: "";
+      width: 100%;
+      height: 50%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: all var(--cover-timing) var(--cover-ease);
+      z-index: 1;
+    }
+    .province-card::after {
+      transition-delay: var(--cover-stagger);
+      top: 50%;
+    }
+    .province-card:hover {
+      box-shadow: white 0 5vw 6vw -9vw, var(--highlight) 0 5.5vw 5vw -7.5vw,
+        rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw,
+        rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+    }
+    .province-card:hover::before,
+    .province-card:hover::after {
+      transform: scaleX(1);
+    }
+    .province-card:hover h2 .char {
+      opacity: 1;
+      transform: translateY(0);
+      color: inherit;
+    }
+    .province-card:hover h2 .char {
+      transition-delay: calc(0.1s + var(--char-index) * var(--title-stagger));
+    }
+    .province-card:hover img {
+      transform: scale(1.1);
+    }
+    .province-card:nth-of-type(1) {
+      --highlight: coral;
+    }
+    .province-card:nth-of-type(2) {
+      --highlight: #56ffe5;
+    }
+    .province-card:nth-of-type(3) {
+      --highlight: #56ffaa;
+    }
+
+    .text {
+      position: absolute;
+      inset: 20px;
+      top: auto;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-size: clamp(20px, 4vw, 40px);
+      font-weight: 800;
+      margin-bottom: 0.2em;
+    }
+
+
+
+    h2 .char {
+      color: var(--highlight);
+      display: inline-block;
+      opacity: 0;
+      position: relative;
+      transform: translateY(20px);
+      transition-property: transform, opacity, color;
+      transition-timing-function: var(--text-ease);
+      transition-duration: var(--text-timing), var(--text-timing),
+        calc(var(--text-timing) * 2);
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      border-radius: 7px;
+    }
+
+    main {
+      grid-template-columns: 1fr;
+      grid-template-rows: 60px;
+      grid-gap: 2em;
+    }
+    @media screen and (min-width: 600px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: -webkit-min-content 1fr;
+        grid-template-rows: min-content 1fr;
+      }
+    }
+
+    .province-card {
+      width: 90vw;
+      max-width: 300px;
+    }
+    @media screen and (min-width: 600px) {
+      .province-card {
+        width: 40vw;
+      }
+    }
+
+    h1 {
+      color: #5b6377;
+      font-weight: 100;
+    }
+    @media screen and (min-width: 600px) {
+      h1 {
+        grid-column: 1/3;
+      }
+    }
+
+    .row{
+            justify-content: space-evenly;
+    }
+
+    body,
+    html {
+      color: white;
+      background: #333844;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    body {
+      padding: 1em 0 3em;
+      min-height: calc(100vh - 4em);
+    }
+  </style>
+  <script>
+    Splitting();
+  </script>
+</html>
